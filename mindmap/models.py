@@ -2,12 +2,10 @@
 class Node:
     def __init__(self, name, children):
         self.name = name
-        self.children = children
+        self.children = children if children is not None else []
 
-
-class MindMap:
-    def __init__(self, name):
-        self.title = name
-        self.children = []
-    title: str = ''
-    nodes: list[Node] = []
+    @staticmethod
+    def from_dict(data):
+        node = Node(data["name"], data["children"])
+        node.children = [Node.from_dict(child) for child in data.get("children", [])]
+        return node
