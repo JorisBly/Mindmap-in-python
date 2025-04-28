@@ -1,3 +1,4 @@
+from mindmap.manager import search_node
 from mindmap.models import Node
 from mindmap.storage import save_mindmap, load_mindmap
 
@@ -11,14 +12,15 @@ def choose_start():
 def show_menu(current_node):
     print(f"\n📍 You are at: {current_node.name}")
     print("0. ➕ Add a new idea here")
+    print(f"1. 🔙 Go back")
+    print(f"2. 💾 Save the MindMap")
+    print(f"3. 🔍 Find path of a node")
+    print(f"4. ❌ Exit")
 
     for idx, child in enumerate(current_node.children, start=1):
-        print(f"{idx}. 📂 {child.name}")
+        print(f"{idx + 4}. 📂 {child.name}")
 
-    print(f"{len(current_node.children)+1}. 🔙 Go back")
-    print(f"{len(current_node.children)+2}. 💾 Save the MindMap")
-    print(f"{len(current_node.children)+3}. 🔍 Find path of a node")
-    print(f"{len(current_node.children)+4}. ❌ Exit")
+
 
 def navigation_menu(root_node):
     current_node = root_node
@@ -42,19 +44,13 @@ def navigation_menu(root_node):
                 print(f"✅ Idea '{new_name}' added.")
             else:
                 print("❗ Idea name cannot be empty.")
-
-        elif 1 <= choice <= len(current_node.children):
-            selected_child = current_node.children[choice - 1]
-            history.append(current_node)
-            current_node = selected_child
-
-        elif choice == len(current_node.children) + 1:
+        elif choice == 1:
             if len(history) > 0:
                 current_node = history.pop()
             else:
                 print("❗ You are already at the root.")
 
-        elif choice == len(current_node.children) + 2:
+        elif choice == 2:
             filename = input("Enter filename to save (YAML): ").strip()
             if filename:
                 save_mindmap(root_node, filename)
@@ -62,13 +58,18 @@ def navigation_menu(root_node):
             else:
                 print("❗ Filename cannot be empty.")
 
-        elif choice == len(current_node.children) + 3:
+        elif choice == 3:
+            node_name = input("Enter node to find from here: ").strip()
+            search_node(current_node, node_name)
+
+        elif choice == 4:
             print("👋 Goodbye!")
             break
 
-        elif choice == len(current_node.children) + 4:
-            print("👋 Goodbye!")
-            break
+        elif choice <= (len(current_node.children) + 4):
+            selected_child = current_node.children[choice - 5]
+            history.append(current_node)
+            current_node = selected_child
 
         else:
             print("❗ Invalid choice.")

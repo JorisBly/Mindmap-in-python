@@ -15,7 +15,5 @@ def save_mindmap(root_node: Node,filename: str):
 def load_mindmap(filename: str):
     with open(filename, "r") as f:
         data = yaml.safe_load(f)
-        node = Node(data['name'], [])
-        node.children = [Node(child['name'], child['children']) for child in data.get("children", [])]
-        return node
+        return Node.from_dict(data)
 

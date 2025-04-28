@@ -1,35 +1,14 @@
-from mindmap.models import MindMap, Node
+from mindmap.models import Node
 
 
 def create_mind_map(title: str):
-    map = MindMap()
+    map = Node(title, [])
     map.title = title
     return map
 
 
-# def add_node(node: Node, name: str, path: str):
-#     if len(node.children) != 3:
-#         parts = [part.strip() for part in path.split(">")]
-#         current = node[0]
-#         for part in parts:
-#             found = False
-#             for child in current.children:
-#                 if child.name == part:
-#                     current = child
-#                     found = True
-#                     break
-#             if not found:
-#                 print(f"Node '{part}' not found under '{current.name}'!")
-#                 return False
-#         new_node = Node(name, [])
-#         current.children.append(new_node)
-#         print(f"✅ Node '{name}' added under '{current.name}'")
-#         return True
-#     else:
-#         print(f"❗This node already have 3 children")
 
-
-def serach_node(node: Node, title):
+def search_node(node: Node, title):
     for children in node.children:
         path = None
         for node in children:
