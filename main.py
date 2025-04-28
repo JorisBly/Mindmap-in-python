@@ -17,7 +17,8 @@ def show_menu(current_node):
 
     print(f"{len(current_node.children)+1}. 🔙 Go back")
     print(f"{len(current_node.children)+2}. 💾 Save the MindMap")
-    print(f"{len(current_node.children)+3}. ❌ Exit")
+    print(f"{len(current_node.children)+3}. 🔍 Find path of a node")
+    print(f"{len(current_node.children)+4}. ❌ Exit")
 
 def navigation_menu(root_node):
     current_node = root_node
@@ -48,7 +49,7 @@ def navigation_menu(root_node):
             current_node = selected_child
 
         elif choice == len(current_node.children) + 1:
-            if history:
+            if len(history) > 0:
                 current_node = history.pop()
             else:
                 print("❗ You are already at the root.")
@@ -65,11 +66,14 @@ def navigation_menu(root_node):
             print("👋 Goodbye!")
             break
 
+        elif choice == len(current_node.children) + 4:
+            print("👋 Goodbye!")
+            break
+
         else:
             print("❗ Invalid choice.")
 
 def main():
-    root_node = None
 
     while True:
         action = choose_start()
