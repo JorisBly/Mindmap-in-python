@@ -15,7 +15,7 @@ def show_menu(current_node):
     print(f"1. 🔙 Go back")
     print(f"2. 💾 Save the MindMap")
     print(f"3. 🔍 Find path of a node")
-    print(f"4. 🔍 Display tree")
+    print(f"4. 🌳 Display tree")
     print(f"5. 🗑️ Delete a node")
     print(f"6. ❌ Exit")
 
