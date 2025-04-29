@@ -39,13 +39,16 @@ def navigation_menu(root_node):
             continue
 
         if choice == 0:
-            new_name = input("Name of the new idea: ").strip()
-            if new_name:
-                new_node = Node(new_name, [])
-                current_node.children.append(new_node)
-                print(f"✅ Idea '{new_name}' added.")
+            if len(current_node.children) <= 3:
+                new_name = input("Name of the new idea: ").strip()
+                if new_name:
+                    new_node = Node(new_name, [])
+                    current_node.children.append(new_node)
+                    print(f"✅ Idea '{new_name}' added.")
+                else:
+                 print("❗ Idea name cannot be empty.")
             else:
-                print("❗ Idea name cannot be empty.")
+                print("❗ you can't have more than 3 nodes.")
         elif choice == 1:
             if len(history) > 0:
                 current_node = history.pop()
