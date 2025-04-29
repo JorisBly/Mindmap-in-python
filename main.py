@@ -1,4 +1,4 @@
-from mindmap.manager import search_node
+from mindmap.manager import search_node, delete_node, list_nodes
 from mindmap.models import Node
 from mindmap.storage import save_mindmap, load_mindmap
 
@@ -15,10 +15,12 @@ def show_menu(current_node):
     print(f"1. 🔙 Go back")
     print(f"2. 💾 Save the MindMap")
     print(f"3. 🔍 Find path of a node")
-    print(f"4. ❌ Exit")
+    print(f"4. 🔍 Display tree")
+    print(f"5. 🗑️ Delete a node")
+    print(f"6. ❌ Exit")
 
     for idx, child in enumerate(current_node.children, start=1):
-        print(f"{idx + 4}. 📂 {child.name}")
+        print(f"{idx + 6}. 📂 {child.name}")
 
 
 
@@ -60,14 +62,26 @@ def navigation_menu(root_node):
 
         elif choice == 3:
             node_name = input("Enter node to find from here: ").strip()
-            search_node(current_node, node_name)
+            print(search_node(current_node, node_name))
 
         elif choice == 4:
+            print(list_nodes(current_node, ''))
+
+        elif choice == 5:
+            node_to_delete = input("Which node you want to delete ? : ").strip()
+            cleaned_list = delete_node(current_node,node_to_delete)
+            if cleaned_list is not None:
+                current_node.children = cleaned_list
+            else:
+                print("❗ Couldn't found any node with this name")
+
+
+        elif choice == 6:
             print("👋 Goodbye!")
             break
 
-        elif choice <= (len(current_node.children) + 4):
-            selected_child = current_node.children[choice - 5]
+        elif choice <= (len(current_node.children) + 7):
+            selected_child = current_node.children[choice - 7]
             history.append(current_node)
             current_node = selected_child
 
