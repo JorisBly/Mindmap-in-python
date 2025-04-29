@@ -39,3 +39,11 @@ def list_nodes(node, prefix: str):
         list_nodes(child, child_prefix)
 
 
+def edit_node(node: Node, name_to_edit: str):
+    new_name = input("Write the name you want to replace with : ").strip()
+    index = next((index for (index, n) in enumerate(node.children) if n.name == name_to_edit), None)
+    if index is not None:
+        node.children[index].name = new_name
+        return node
+    else:
+        print("❗ Couldn't found any node with this name")

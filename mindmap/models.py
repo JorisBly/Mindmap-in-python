@@ -9,3 +9,6 @@ class Node:
         node = Node(data["name"], data["children"])
         node.children = [Node.from_dict(child) for child in data.get("children", [])]
         return node
+
+    def edit_name(self, new_name):
+        self.name = new_name
