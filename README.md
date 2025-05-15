@@ -13,10 +13,10 @@ A command-line tool to **create and explore mind maps** directly in your termina
    cd project_name
    
 2. **Install requirements**:
-```bash
-pip install -r requirements.txt
+   ```bash
+   pip install -r requirements.txt
 
 3. **Run the CLI**:
-```bash
-python main.py
+   ```bash
+   python main.py
 
