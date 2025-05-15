@@ -33,7 +33,7 @@ Exit the program
 
 ---
 
-🧭 **MindMap Navigation**
+## 🧭 MindMap Navigation
 After creating or loading a mind map, you can interact with it through the following options:
 
 0 ➕ Add a new idea to the current node (max. 3 children)
@@ -58,14 +58,14 @@ The navigation is interactive, and you always see your position and available op
 
 ---
 
-📁 **MindMap Storage**
+## 📁 MindMap Storage
 MindMaps are saved as .yml files using a simple YAML structure.
 
 You can load existing maps anytime to continue editing or exploring.
 
 ---
 
-🛠 **Project Structure**
+## 🛠 Project Structure
 main.py – the entry point and user interface
 
 mindmap/models.py – defines the Node class
@@ -76,7 +76,7 @@ mindmap/storage.py – manages loading/saving to YAML files
 
 ---
 
-🚧 **Notes**
+## 🚧 Notes
 Each node can have up to 3 children.
 
 The interface is fully interactive and text-based.
